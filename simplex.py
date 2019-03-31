@@ -23,7 +23,12 @@ def simplex(A, b, c, s, type="max", M=100):
 		if k == "<=" or k == "=<":
 			continue
 		elif k == "=":
+			# Aplica a regra do "Big-M": introduz uma variável artificial de valor muito grande 
+			# para ser possível fechar as dimensões das variáveis básicas, ou seja, faz aparecer 
+			# a matriz identidade. 
 			t[0, i+n] = M
+
+			# Deixa a função objetivo em função das variáveis originais 
 			t[0,:] = t[0,:] - M*t[i+1]
 		elif k == ">=" or k == "=>":
 			t[0, i+n] = M

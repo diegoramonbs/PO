@@ -106,19 +106,3 @@ def simplex(A, b, c, s, type="max", M=100):
 	    k += 1
 	print("\n-------------------------------------------------")
 	print("Solução ótima: {}".format(t[0][m+n]))
-
-
-
-"""A = np.array([[1,0],[0,2],[3,2]])
-b = np.array([4,12,18])
-c = np.array([3,5])
-s = np.array(["<=", "<=", "="])
-"""
-A = np.array([[0.3,0.1],[0.5,0.5],[0.6,0.4]])
-b = np.array([2.7, 6, 6])
-c = np.array([0.4, 0.5])
-s = np.array(["<=", "=", ">="])
-
-
-
-simplex(A, b, c, s, "min")

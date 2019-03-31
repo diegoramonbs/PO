@@ -81,6 +81,9 @@ def simplex(A, b, c, s, type="max", M=100):
 	            p = i
 	        elif t[i][-1]/t[i][q] < t[p][-1] / t[p][q]:
 	            p = i
+				
+	    if p == -1:
+			raise Exception("Problema sem solução ótima. Solução ilimitada!")
 	    
 	    print("Variável que sairá na base: {}, valor: {}".format(v[p+1], t[p][q]))
 	    # Aplica eliminação de Gauss-Jordan no elemento pivô (p, q)
@@ -96,13 +99,15 @@ def simplex(A, b, c, s, type="max", M=100):
 	            t[p][j] /= t[p][q]
 	    t[p][q] = 1.0
 
+		# Realiza a troca de variáveis da base
 	    v[p+1], v[q] = v[q],  v[p+1]
-	    print(v)
 	    
 	    print("\n-------------------------------------------------")
 	    print("Tabela Interação - {}".format(k))
 	    print("-------------------------------------------------\n")
 	    print(t)
+		
+		# Incrementa contador de iteração
 	    k += 1
 	print("\n-------------------------------------------------")
 	print("Solução ótima: {}".format(t[0][m+n]))

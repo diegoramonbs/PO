@@ -8,14 +8,18 @@ import numpy as np
 
 def branch_and_bound(A, b, c, s, type, max_node=500, verbose=True):
 	node_count = 0
+	
+	#TODO: add support to minimization problem
 	best_feasible = -np.inf
+	
 	q = []
-
 	q.append(Simplex(A, b, c, s, type))
 
 	while len(q) > 0: 
 		node_count += 1
 		node = q.pop(0)
+		
+		# Execute simplex
 		node.solve()
 
 		if node_count >= max_node:

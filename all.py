@@ -441,6 +441,24 @@ def branch_and_bound(model, max_node=500, verbose=True):
 
 	return best_model
 
+def print_matrix(g):
+	print('\n'.join(['\t'.join(['{:+7.3e}'.format(item) for item in row])
+        for row in g]))
+
+
+def format_log(model):
+	print("Primal infeasible: \t\t {}".format(str(model.is_primal_infeasible)))
+	print("Primal objective: \t\t {}".format(model.primal_objective))
+	print("Primal solution: \t\t {}".format(model.primal_variables))
+	print("Basis:          \t\t {}".format(map(lambda x: x+1, model.basis)))
+	print("Time execution:  \t\t {:.10f} seconds".format(model.time_execution))
+
+
+	for iteration, (tableau, basis) in model.history.items():
+		print("\nIteration: {}\n".format(iteration))
+		print_matrix(tableau)
+		print("Basis: {}".format(map(lambda x: x+1, basis)))
+
 if __name__ == '__main__':
 	model = Model()
 
